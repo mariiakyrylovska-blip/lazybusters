@@ -1,0 +1,26 @@
+:root {
+  --color-mint-50: #c8e6f5;
+  --color-mint-100: #a8d8f0;
+  --color-mint-200: #88caeb;
+  --color-mint-300: #68bce6;
+
+  --color-peach-50: #ffe1c7;
+  --color-peach-100: #ffc8a0;
+  --color-peach-200: #ffaf78;
+
+  --color-fog-50: #ffffff;
+  --color-fog-100: #f5f2ef;
+  --color-fog-200: #ded8d2;
+
+  --font-color-primary: #5d5956;
+  --font-color-muted: #7c7875;
+  --font-color-soft: #a19a92;
+
+  color-scheme: only light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+}

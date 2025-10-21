@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Nunito+Sans:wght@400;600&display=swap');
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: theme('fontFamily.body');
+    background-color: var(--color-mint-50);
+    color: var(--font-color-primary);
+  }
+
+  body {
+    @apply bg-mint-50 text-base leading-relaxed;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: theme('fontFamily.display');
+    color: var(--font-color-primary);
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .app-card {
+    @apply rounded-3xl bg-transparent p-6 shadow-card backdrop-blur;
+  }
+
+  .app-button {
+    @apply rounded-2xl bg-peach-200 px-6 py-3 font-display text-lg text-fog-50 transition hover:bg-peach-100 active:translate-y-0.5;
+  }
+
+  .app-button--secondary {
+    @apply bg-peach-50 text-font-primary hover:bg-peach-100;
+  }
+}
