@@ -7,7 +7,7 @@ import { TaskItem } from '@/features/tasks/components/TaskItem.tsx'
 import { Button } from '@/features/ui/components/Button.tsx'
 import { QuoteBubble } from '@/features/pets/components/QuoteBubble.tsx'
 import { allCompleteTodayAtom } from '@/state/derived/allCompleteToday.ts'
-import { activeTasksAtom, tasksAtom } from '@/state/atoms/tasks.ts'
+import { activeTasksAtom } from '@/state/atoms/tasks.ts'
 import { todayInstancesAtom, toggleTaskCompletionAtom } from '@/state/atoms/taskInstances.ts'
 import { consumePendingFailAtom } from '@/state/atoms/ui.ts'
 import { settingsAtom } from '@/state/atoms/settings.ts'
@@ -16,7 +16,6 @@ export const GoalsPage = () => {
   const navigate = useNavigate()
   const settings = useAtomValue(settingsAtom)
   const tasks = useAtomValue(activeTasksAtom)
-  const allTasks = useAtomValue(tasksAtom)
   const todayInstances = useAtomValue(todayInstancesAtom)
   const allComplete = useAtomValue(allCompleteTodayAtom)
   const toggleTaskCompletion = useSetAtom(toggleTaskCompletionAtom)

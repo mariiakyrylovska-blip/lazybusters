@@ -1,15 +1,10 @@
 import { useState } from 'react'
-import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/features/ui/components/Button.tsx'
 import { petCatalog } from '@/types/pet.ts'
-import { settingsAtom } from '@/state/atoms/settings.ts'
-import { getRandomMotivation } from '@/services/messages.ts'
 
 export const CongratsPage = () => {
   const navigate = useNavigate()
-  const settings = useAtomValue(settingsAtom)
-  const pet = petCatalog[settings.currentPet]
   const [affirmationIndex, setAffirmationIndex] = useState(0)
 
   // Показываем разных питомцев в зависимости от количества завершений в день

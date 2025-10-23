@@ -19,7 +19,9 @@ export const LandingPage = () => {
     localStorage.clear()
     indexedDB.databases().then((dbs) => {
       dbs.forEach((db) => {
-        indexedDB.deleteDatabase(db.name)
+        if (db.name) {
+          indexedDB.deleteDatabase(db.name)
+        }
       })
     })
     window.location.reload()

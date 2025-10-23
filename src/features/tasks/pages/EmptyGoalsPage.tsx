@@ -8,7 +8,6 @@ export const EmptyGoalsPage = () => {
   const navigate = useNavigate()
   const settings = useAtomValue(settingsAtom)
   const pet = petCatalog[settings.currentPet]
-  const encouragement = pet.affirmations[0] ?? 'You can do it!'
 
   return (
     <div className="flex min-h-screen flex-col bg-mint-50 pb-16">
