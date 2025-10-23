@@ -16,15 +16,15 @@ export const EmptyGoalsPage = () => {
           <div className="relative w-full overflow-hidden rounded-3xl bg-peach-50 shadow-soft">
             <div className="flex h-64 flex-col items-center justify-center gap-3" style={
               pet.id === 'arlo'
-                ? { backgroundImage: 'url(/bb-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+                ? { backgroundImage: 'url(/lazybusters/bb-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
                 : pet.id === 'sasa'
-                ? { backgroundImage: 'url(/d2-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+                ? { backgroundImage: 'url(/lazybusters/d2-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
                 : pet.id === 'luma'
-                ? { backgroundImage: 'url(/d6-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+                ? { backgroundImage: 'url(/lazybusters/d6-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
                 : {}
             }>
               <img
-                src={pet.id === 'arlo' ? '/9119.png' : pet.id === 'sasa' ? '/9120.png' : pet.id === 'luma' ? '/9118.png' : ''}
+                src={pet.id === 'arlo' ? '/lazybusters/9119.png' : pet.id === 'sasa' ? '/lazybusters/9120.png' : pet.id === 'luma' ? '/lazybusters/9118.png' : ''}
                 alt={pet.name}
                 className="h-40 w-40 object-contain"
               />

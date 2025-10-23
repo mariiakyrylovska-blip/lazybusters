@@ -15,18 +15,6 @@ export const LandingPage = () => {
     }
   }, [navigate, settings.onboardingCompletedAt])
 
-  const handleReset = () => {
-    localStorage.clear()
-    indexedDB.databases().then((dbs) => {
-      dbs.forEach((db) => {
-        if (db.name) {
-          indexedDB.deleteDatabase(db.name)
-        }
-      })
-    })
-    window.location.reload()
-  }
-
   return (
     <div className="flex min-h-screen flex-col items-center bg-mint-50 pb-8 md:pb-12 lg:pb-16 pt-8 md:pt-12 lg:pt-16">
       <div className="flex flex-1 w-full max-w-sm flex-col items-center justify-center gap-6 md:gap-8 lg:gap-10 text-center px-4 md:px-6 lg:px-8 mx-auto">
@@ -42,10 +30,7 @@ export const LandingPage = () => {
           <p className="mt-2 md:mt-4 lg:mt-6 text-sm md:text-base lg:text-lg text-font-muted">Beat laziness and grow your own pet habit buddy!</p>
         </div>
       </div>
-      <div className="w-full max-w-sm px-4 md:px-6 lg:px-8 flex gap-2 md:gap-3 lg:gap-4 mx-auto">
-        <Button fullWidth className="text-base md:text-lg lg:text-xl" onClick={handleReset}>
-          Reset
-        </Button>
+      <div className="w-full max-w-sm px-4 md:px-6 lg:px-8 mx-auto">
         <Button fullWidth className="text-base md:text-lg lg:text-xl" onClick={() => navigate('/story')}>
           Let&apos;s go
         </Button>

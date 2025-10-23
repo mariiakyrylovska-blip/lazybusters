@@ -26,16 +26,16 @@ export const CongratsPage = () => {
   }
 
   const getPetImage = (petId: string) => {
-    if (petId === 'sasa') return '/stasik.png'
-    if (petId === 'koshara') return '/koshara.png'
-    return '/9119.png'
+    if (petId === 'sasa') return '/lazybusters/stasik.png'
+    if (petId === 'koshara') return '/lazybusters/koshara.png'
+    return '/lazybusters/9119.png'
   }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between bg-mint-50 pb-8 md:pb-12 lg:pb-16 pt-8 md:pt-12 lg:pt-16">
-      <div className="w-full max-w-sm px-4 md:px-6 lg:px-8 mx-auto">
+      <div className="w-full max-w-sm px-4 md:px-6 lg:px-8 mx-auto flex-1 flex flex-col justify-center">
         <div
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-peach-100 to-peach-50 pb-8 md:pb-12 lg:pb-16 pt-12 md:pt-16 lg:pt-20 text-center shadow-card cursor-pointer transition-transform hover:scale-105"
+          className="w-full relative overflow-hidden rounded-3xl bg-gradient-to-b from-peach-100 to-peach-50 pb-8 md:pb-12 lg:pb-16 pt-12 md:pt-16 lg:pt-20 text-center shadow-card cursor-pointer transition-transform hover:scale-105"
           onClick={handleCardClick}
         >
           <div className="flex flex-col items-center gap-3 md:gap-4 lg:gap-6">
@@ -48,10 +48,10 @@ export const CongratsPage = () => {
             <p className="text-base md:text-lg lg:text-xl text-font-muted">
               {celebrationPetId === 'sasa' ? 'Stasik is so proud of you! 🐹' : 'Koshara is so proud of you! 🐱'}
             </p>
-            <div className="flex flex-col items-center gap-1">
-              <p className="px-4 md:px-6 text-sm md:text-base lg:text-lg italic text-font-primary">"{affirmation}"</p>
+            <div className="flex flex-col items-center gap-1 w-full">
+              <p className="px-4 md:px-6 text-sm md:text-base lg:text-lg italic text-font-primary break-words overflow-wrap-break-word">"{affirmation}"</p>
               <p className="text-base md:text-lg lg:text-xl leading-none">⬆️</p>
-              <p className="px-4 md:px-6 text-xs md:text-sm text-font-muted">
+              <p className="px-4 md:px-6 text-xs md:text-sm text-font-muted break-words overflow-wrap-break-word">
                 {celebrationPetId === 'sasa' ? 'tap for another squeak of motivation' : 'tap for another meow of motivation'}
               </p>
             </div>
