@@ -3,23 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Lazy Busters</title>
-    <script type="text/javascript">
-      // GitHub Pages 404 redirect for SPA routing
-      // Store the path that caused the 404
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const hash = window.location.hash;
-
-      // Store in sessionStorage for the app to retrieve
-      sessionStorage.setItem('redirect_path', path);
-      sessionStorage.setItem('redirect_search', search);
-      sessionStorage.setItem('redirect_hash', hash);
-
-      // Redirect to index.html
-      window.location.replace('/lazybusters/');
-    </script>
   </head>
   <body>
-    <p>Redirecting to Lazy Busters...</p>
+    <p>Page not found. Redirecting...</p>
+    <script type="text/javascript">
+      window.location.replace('/lazybusters/');
+    </script>
   </body>
 </html>
