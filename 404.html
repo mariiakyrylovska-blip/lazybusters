@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>Lazy Busters</title>
     <script type="text/javascript">
+      // Store the path in sessionStorage so index.html can retrieve it
+      const path = window.location.pathname;
+      sessionStorage.setItem('redirect', path);
+      // Redirect to the home page
       window.location.replace('/lazybusters/');
     </script>
   </head>
