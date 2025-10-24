@@ -3,11 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Lazy Busters</title>
-  </head>
-  <body>
-    <p>Page not found. Redirecting...</p>
     <script type="text/javascript">
-      window.location.replace('/lazybusters/');
+      // https://github.com/rafgraph/spa-github-pages
+      // This script takes the current url and converts the path and query string
+      // into just a query string, and then redirects the browser to the new url
+      // with only a query string and hash fragment.
+      // For example: /one/two?a=b&c=d#qwe becomes /?/one/two&a=b~and~c=d#qwe
+      // Note: this 404.html file must be at least 512 bytes for it to work
+      // with GitHub Pages (that's why this file is otherwise empty).
+      // https://github.com/rafgraph/spa-github-pages/issues/13
+
+      var l = window.location;
+      sessionStorage.redirect = l.pathname + l.search + l.hash;
+      l.replace(
+        l.protocol +
+          '//' +
+          l.hostname +
+          (l.port ? ':' + l.port : '') +
+          '/lazybusters/?/' +
+          (l.pathname + l.search + l.hash)
+            .slice(1)
+            .replace(/&/g, '~and~')
+      );
     </script>
-  </body>
+  </head>
+  <body></body>
 </html>
