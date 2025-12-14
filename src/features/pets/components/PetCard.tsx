@@ -27,7 +27,7 @@ export const PetCard = ({ pet, onSelect, selected, buttonLabel, isSmallButton }:
         style={{ width: '160px' }}
       >
         <img
-          src={pet.id === 'arlo' ? '/lazybusters/deer.png' : pet.id === 'sasa' ? '/lazybusters/9120.png' : pet.id === 'luma' ? '/lazybusters/9118.png' : pet.asset}
+          src={pet.id === 'arlo' ? `${import.meta.env.BASE_URL}deer.png` : pet.id === 'sasa' ? `${import.meta.env.BASE_URL}9120.png` : pet.id === 'luma' ? `${import.meta.env.BASE_URL}9118.png` : pet.id === 'koshara' ? `${import.meta.env.BASE_URL}koshara.png` : pet.id === 'stasik' ? `${import.meta.env.BASE_URL}stasik.png` : pet.asset}
           alt={pet.name}
           className="h-24 w-24 object-contain"
         />

@@ -52,16 +52,16 @@ export const GoalsPage = () => {
         <div className="relative w-full overflow-hidden rounded-3xl bg-peach-50 shadow-soft">
           <div className="flex h-64 flex-col items-center justify-center gap-3" style={
             pet.id === 'arlo'
-              ? { backgroundImage: 'url(/lazybusters/bb-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+              ? { backgroundImage: `url(${import.meta.env.BASE_URL}bb-bg.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }
               : pet.id === 'sasa'
-              ? { backgroundImage: 'url(/lazybusters/d2-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+              ? { backgroundImage: `url(${import.meta.env.BASE_URL}d2-bg.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }
               : pet.id === 'luma'
-              ? { backgroundImage: 'url(/lazybusters/d6-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+              ? { backgroundImage: `url(${import.meta.env.BASE_URL}d6-bg.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }
               : {}
           }>
             <QuoteBubble text={encouragement} />
             <img
-              src={pet.id === 'arlo' ? '/lazybusters/9119.png' : pet.id === 'sasa' ? '/lazybusters/9120.png' : pet.id === 'luma' ? '/lazybusters/9118.png' : ''}
+              src={pet.id === 'arlo' ? `${import.meta.env.BASE_URL}9119.png` : pet.id === 'sasa' ? `${import.meta.env.BASE_URL}9120.png` : pet.id === 'luma' ? `${import.meta.env.BASE_URL}9118.png` : pet.id === 'koshara' ? `${import.meta.env.BASE_URL}koshara.png` : pet.id === 'stasik' ? `${import.meta.env.BASE_URL}stasik.png` : ''}
               alt={pet.name}
               className="h-40 w-40 object-contain"
             />

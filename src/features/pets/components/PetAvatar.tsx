@@ -32,7 +32,7 @@ export const PetAvatar = ({ pet, size = 'md', withCrown }: PetAvatarProps) => {
       >
         {!errored ? (
           <img
-            src={pet.asset}
+            src={pet.getImagePath ? pet.getImagePath() : pet.asset}
             alt={`${pet.name} illustration`}
             className="h-full w-full object-cover"
             onError={() => setErrored(true)}

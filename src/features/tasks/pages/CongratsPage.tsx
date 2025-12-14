@@ -26,9 +26,10 @@ export const CongratsPage = () => {
   }
 
   const getPetImage = (petId: string) => {
-    if (petId === 'sasa') return '/lazybusters/stasik.png'
-    if (petId === 'koshara') return '/lazybusters/koshara.png'
-    return '/lazybusters/9119.png'
+    const baseUrl = import.meta.env.BASE_URL
+    if (petId === 'sasa') return `${baseUrl}stasik.png`
+    if (petId === 'koshara') return `${baseUrl}koshara.png`
+    return `${baseUrl}9119.png`
   }
 
   return (

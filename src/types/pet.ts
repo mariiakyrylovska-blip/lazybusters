@@ -1,4 +1,4 @@
-export type PetId = 'arlo' | 'sasa' | 'luma' | 'koshara'
+export type PetId = 'arlo' | 'sasa' | 'luma' | 'koshara' | 'stasik'
 
 export interface PetInfo {
   id: PetId
@@ -8,6 +8,7 @@ export interface PetInfo {
   asset: string
   backgroundImage?: string
   affirmations: string[]
+  getImagePath?: () => string
 }
 
 export const petCatalog: Record<PetId, PetInfo> = {
@@ -23,6 +24,7 @@ export const petCatalog: Record<PetId, PetInfo> = {
       'One gentle step at a time.',
       'Kindness to yourself builds magic.',
     ],
+    getImagePath: () => `${import.meta.env.BASE_URL}9119.png`,
   },
   sasa: {
     id: 'sasa',
@@ -40,6 +42,7 @@ export const petCatalog: Record<PetId, PetInfo> = {
       'Motivation level: 100% carrot-powered.',
       'Nap hard, work harder.',
     ],
+    getImagePath: () => `${import.meta.env.BASE_URL}9120.png`,
   },
   luma: {
     id: 'luma',
@@ -52,6 +55,7 @@ export const petCatalog: Record<PetId, PetInfo> = {
       'Every step is a discovery.',
       'You learn fast—keep going!',
     ],
+    getImagePath: () => `${import.meta.env.BASE_URL}9118.png`,
   },
   koshara: {
     id: 'koshara',
@@ -69,5 +73,21 @@ export const petCatalog: Record<PetId, PetInfo> = {
       'Meow means: keep going!',
       'Paws, breathe, and continue your streak.',
     ],
+    getImagePath: () => `${import.meta.env.BASE_URL}koshara.png`,
+  },
+  stasik: {
+    id: 'stasik',
+    name: 'Stasik',
+    emoji: '🐹',
+    description: 'Curious and energetic hamster friend.',
+    asset: '/assets/pets/stasik.png',
+    affirmations: [
+      'You can do it!',
+      'Keep spinning those wheels!',
+      'Small steps lead to big wins.',
+      'Stay curious and keep going!',
+      'Every habit is a victory lap.',
+    ],
+    getImagePath: () => `${import.meta.env.BASE_URL}stasik.png`,
   },
 }
