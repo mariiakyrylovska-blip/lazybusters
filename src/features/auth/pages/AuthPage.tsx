@@ -1,24 +1,32 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/hooks/useAuth.ts'
 import { Button } from '@/features/ui/components/Button.tsx'
 
 export const AuthPage = () => {
   const navigate = useNavigate()
-  const [isLogin, setIsLogin] = useState(true)
+  const { login, isAuthenticated } = useAuth()
+  const [isLoginMode, setIsLoginMode] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // If already authenticated, redirect to main app
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true })
+    }
+  }, [isAuthenticated, navigate])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    
+
     // Simulate auth - in real app would call Supabase
     setTimeout(() => {
-      localStorage.setItem('user_email', email)
-      localStorage.setItem('is_authenticated', 'true')
+      login(email)
       setLoading(false)
-      navigate('/', { replace: true })
+      // Navigation will happen automatically via useEffect
     }, 500)
   }
 
@@ -30,7 +38,7 @@ export const AuthPage = () => {
             Lazy Busters
           </h1>
           <p className="text-center text-font-muted text-sm mb-8">
-            {isLogin ? 'Sign in to your account' : 'Create a new account'}
+            {isLoginMode ? 'Sign in to your account' : 'Create a new account'}
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -55,19 +63,19 @@ export const AuthPage = () => {
               disabled={loading}
               className="mt-2"
             >
-              {loading ? 'Loading...' : isLogin ? 'Sign In' : 'Sign Up'}
+              {loading ? 'Loading...' : isLoginMode ? 'Sign In' : 'Sign Up'}
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-font-muted">
-              {isLogin ? "Don't have an account? " : 'Already have an account? '}
+              {isLoginMode ? "Don't have an account? " : 'Already have an account? '}
               <button
                 type="button"
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => setIsLoginMode(!isLoginMode)}
                 className="font-semibold text-peach-200 hover:text-peach-100"
               >
-                {isLogin ? 'Sign Up' : 'Sign In'}
+                {isLoginMode ? 'Sign Up' : 'Sign In'}
               </button>
             </p>
           </div>

@@ -2,12 +2,19 @@ import { useEffect } from 'react'
 import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { settingsAtom } from '@/state/atoms/settings.ts'
+import { useAuth } from '@/hooks/useAuth.ts'
 import { Button } from '@/features/ui/components/Button.tsx'
 import mascotsImage from '@/assets/pets/mascots.png'
 
 export const LandingPage = () => {
   const navigate = useNavigate()
   const settings = useAtomValue(settingsAtom)
+  const { logout } = useAuth()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/', { replace: true })
+  }
 
   useEffect(() => {
     if (settings.onboardingCompletedAt) {
@@ -17,6 +24,16 @@ export const LandingPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-mint-50 pb-8 md:pb-12 lg:pb-16 pt-8 md:pt-12 lg:pt-16">
+      {/* Logout button in top right */}
+      <div className="w-full max-w-sm px-4 md:px-6 lg:px-8 mx-auto mb-4 flex justify-end">
+        <button
+          onClick={handleLogout}
+          className="text-sm text-font-muted hover:text-peach-200 transition-colors underline"
+        >
+          Logout
+        </button>
+      </div>
+
       <div className="flex flex-1 w-full max-w-sm flex-col items-center justify-center gap-6 md:gap-8 lg:gap-10 text-center px-4 md:px-6 lg:px-8 mx-auto">
         <div className="h-40 md:h-48 lg:h-56 w-full rounded-3xl overflow-hidden shadow-soft">
           <img

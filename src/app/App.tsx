@@ -1,10 +1,9 @@
-import { RouterProvider } from 'react-router-dom'
 import { AppProviders } from './providers/AppProviders.tsx'
-import { router } from './router.tsx'
+import { AuthRouter } from './AuthRouter.tsx'
 
 const App = () => (
   <AppProviders>
-    <RouterProvider router={router} />
+    <AuthRouter />
   </AppProviders>
 )
 
