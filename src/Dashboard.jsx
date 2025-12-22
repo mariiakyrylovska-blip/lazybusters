@@ -1,43 +1,67 @@
-import React from "react";
-import "./Dashboard.css";
-
-export default function Dashboard({ session, onLogout }) {
-  const mascots = [
-    { id: 1, name: "Stasik", image: "/stasik.png" },
-    { id: 2, name: "Koshara", image: "/koshara.png" },
-  ];
-
+export default function Dashboard() {
   return (
-    <div className="dashboard-page">
-      {/* Header with user info and logout */}
-      <div className="dashboard-header">
-        <div className="user-greeting">
-          <h1 className="greeting-title">Welcome back!</h1>
-          <p className="user-email">{session.user.email}</p>
-        </div>
-        <button onClick={onLogout} className="logout-btn">
-          Log out
-        </button>
-      </div>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f2f2f2",
+        padding: "20px",
+      }}
+    >
+      {/* Content container - centered and constrained */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "24px",
+          maxWidth: "400px",
+          width: "100%",
+        }}
+      >
+        {/* Title */}
+        <h1
+          style={{
+            margin: 0,
+            fontSize: "28px",
+            fontWeight: "600",
+            color: "#5d5956",
+            textAlign: "center",
+          }}
+        >
+          Stasik & Koshara 🐹🐱
+        </h1>
 
-      {/* Main content */}
-      <div className="dashboard-content">
-        <div className="mascots-container">
-          {mascots.map((mascot) => (
-            <div key={mascot.id} className="mascot-card">
-              <div className="mascot-image-container">
-                <img
-                  src={mascot.image}
-                  alt={mascot.name}
-                  className="mascot-image"
-                />
-              </div>
-              <p className="mascot-name">{mascot.name}</p>
-            </div>
-          ))}
-        </div>
+        {/* Image - reduced size, maintains aspect ratio */}
+        <img
+          src={`${import.meta.env.BASE_URL}stasik.png`}
+          alt="Stasik"
+          style={{
+            width: "200px",
+            height: "auto",
+            borderRadius: "16px",
+            boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
+            objectFit: "contain",
+          }}
+        />
+
+        {/* Text below image - centered */}
+        <p
+          style={{
+            margin: 0,
+            fontSize: "16px",
+            color: "#7c7875",
+            opacity: 0.85,
+            textAlign: "center",
+            lineHeight: "1.5",
+          }}
+        >
+          Habit completed ✨ Stasik is happy!
+        </p>
       </div>
     </div>
   );
 }
-

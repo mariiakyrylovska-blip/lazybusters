@@ -1,6 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { RootLayout } from '@/features/ui/components/RootLayout.tsx'
 import { RootErrorScreen } from '@/features/ui/components/RootErrorScreen.tsx'
+import { AuthPage } from '@/features/auth/pages/AuthPage.tsx'
 import { LandingPage } from '@/features/onboarding/pages/LandingPage.tsx'
 import { StoryPage } from '@/features/onboarding/pages/StoryPage.tsx'
 import { ChoosePetPage } from '@/features/onboarding/pages/ChoosePetPage.tsx'
@@ -12,6 +13,11 @@ import { CongratsPage } from '@/features/tasks/pages/CongratsPage.tsx'
 import { FailPage } from '@/features/tasks/pages/FailPage.tsx'
 
 export const router = createBrowserRouter([
+  {
+    path: '/auth',
+    element: <AuthPage />,
+    errorElement: <RootErrorScreen />,
+  },
   {
     path: '/',
     element: <RootLayout />,
