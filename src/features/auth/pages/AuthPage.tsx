@@ -1,22 +1,11 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '@/hooks/useAuth.ts'
+import { useState } from 'react'
 import { Button } from '@/features/ui/components/Button.tsx'
 
 export const AuthPage = () => {
-  const navigate = useNavigate()
-  const { login, isAuthenticated } = useAuth()
   const [isLoginMode, setIsLoginMode] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-
-  // If already authenticated, redirect to main app
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/', { replace: true })
-    }
-  }, [isAuthenticated, navigate])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,9 +13,11 @@ export const AuthPage = () => {
 
     // Simulate auth - in real app would call Supabase
     setTimeout(() => {
-      login(email)
+      localStorage.setItem('user_email', email)
+      localStorage.setItem('is_authenticated', 'true')
       setLoading(false)
-      // Navigation will happen automatically via useEffect
+      // Reload the app to trigger auth check in App.tsx
+      window.location.href = window.location.pathname
     }, 500)
   }
 

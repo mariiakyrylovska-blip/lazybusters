@@ -13,7 +13,8 @@ export const LandingPage = () => {
 
   const handleLogout = () => {
     logout()
-    navigate('/', { replace: true })
+    // Reload the app to trigger auth check in App.tsx
+    window.location.href = window.location.pathname
   }
 
   useEffect(() => {
