@@ -2,19 +2,25 @@ import { useEffect } from 'react'
 import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { settingsAtom } from '@/state/atoms/settings.ts'
-import { useAuth } from '@/hooks/useAuth.ts'
 import { Button } from '@/features/ui/components/Button.tsx'
 import mascotsImage from '@/assets/pets/mascots.png'
 
 export const LandingPage = () => {
   const navigate = useNavigate()
   const settings = useAtomValue(settingsAtom)
-  const { logout } = useAuth()
 
   const handleLogout = () => {
-    logout()
-    // Reload the app to trigger auth check in App.tsx
-    window.location.href = window.location.pathname
+    localStorage.removeItem('is_authenticated')
+    navigate('/auth')
+  }
+
+  const handleGetStarted = () => {
+    const isAuthenticated = localStorage.getItem('is_authenticated') === 'true'
+    if (isAuthenticated) {
+      navigate('/dashboard')
+    } else {
+      navigate('/auth')
+    }
   }
 
   useEffect(() => {
@@ -62,7 +68,7 @@ export const LandingPage = () => {
         <Button
           fullWidth
           className="text-base md:text-lg lg:text-xl bg-[#d4a574] hover:bg-[#c89560] text-white font-semibold py-3 md:py-4 rounded-xl transition-colors duration-200"
-          onClick={() => navigate('/story')}
+          onClick={handleGetStarted}
         >
           Let&apos;s go
         </Button>

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function AuthPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,7 +16,7 @@ export function AuthPage() {
     }
 
     localStorage.setItem("is_authenticated", "true");
-    window.location.href = "/lazybusters/dashboard";
+    navigate("/dashboard");
   };
 
   return (
