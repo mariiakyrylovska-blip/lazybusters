@@ -1,78 +1,149 @@
-import { useState } from 'react'
-import { Button } from '@/features/ui/components/Button.tsx'
+import { useState } from "react";
 
-export const AuthPage = () => {
-  const [isLoginMode, setIsLoginMode] = useState(true)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+export function AuthPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    // Simulate auth - in real app would call Supabase
-    setTimeout(() => {
-      localStorage.setItem('user_email', email)
-      localStorage.setItem('is_authenticated', 'true')
-      setLoading(false)
-      // Reload the app to trigger auth check in App.tsx
-      window.location.href = window.location.pathname
-    }, 500)
-  }
+    if (!email || !password) {
+      setError("Enter email and password");
+      return;
+    }
+
+    localStorage.setItem("is_authenticated", "true");
+    window.location.href = "/lazybusters/dashboard";
+  };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-mint-50 to-mint-100 px-4">
-      <div className="w-full max-w-md">
-        <div className="rounded-3xl bg-white p-8 shadow-lg">
-          <h1 className="font-display text-3xl font-bold text-center text-peach-200 mb-2">
-            Lazy Busters
-          </h1>
-          <p className="text-center text-font-muted text-sm mb-8">
-            {isLoginMode ? 'Sign in to your account' : 'Create a new account'}
-          </p>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#faf9f7",
+        padding: "20px",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      }}
+    >
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          width: "100%",
+          maxWidth: "360px",
+          padding: "40px 32px",
+          borderRadius: "20px",
+          background: "#ffffff",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h2
+          style={{
+            margin: "0 0 32px 0",
+            fontSize: "28px",
+            fontWeight: "600",
+            color: "#2d2d2d",
+            textAlign: "center",
+          }}
+        >
+          Lazy Busters
+        </h2>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="rounded-lg border-2 border-fog-50 bg-fog-50 px-4 py-3 text-font-primary placeholder-font-muted focus:border-peach-200 focus:bg-white focus:outline-none"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="rounded-lg border-2 border-fog-50 bg-fog-50 px-4 py-3 text-font-primary placeholder-font-muted focus:border-peach-200 focus:bg-white focus:outline-none"
-            />
-            <Button
-              fullWidth
-              disabled={loading}
-              className="mt-2"
-            >
-              {loading ? 'Loading...' : isLoginMode ? 'Sign In' : 'Sign Up'}
-            </Button>
-          </form>
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "12px 14px",
+            marginBottom: "14px",
+            border: "1px solid #e0ddd9",
+            borderRadius: "10px",
+            fontSize: "14px",
+            backgroundColor: "#fafaf9",
+            boxSizing: "border-box",
+            transition: "border-color 0.2s",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "#d4a574";
+            e.currentTarget.style.backgroundColor = "#ffffff";
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "#e0ddd9";
+            e.currentTarget.style.backgroundColor = "#fafaf9";
+          }}
+        />
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-font-muted">
-              {isLoginMode ? "Don't have an account? " : 'Already have an account? '}
-              <button
-                type="button"
-                onClick={() => setIsLoginMode(!isLoginMode)}
-                className="font-semibold text-peach-200 hover:text-peach-100"
-              >
-                {isLoginMode ? 'Sign Up' : 'Sign In'}
-              </button>
-            </p>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "12px 14px",
+            marginBottom: "14px",
+            border: "1px solid #e0ddd9",
+            borderRadius: "10px",
+            fontSize: "14px",
+            backgroundColor: "#fafaf9",
+            boxSizing: "border-box",
+            transition: "border-color 0.2s",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "#d4a574";
+            e.currentTarget.style.backgroundColor = "#ffffff";
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "#e0ddd9";
+            e.currentTarget.style.backgroundColor = "#fafaf9";
+          }}
+        />
+
+        {error && (
+          <div
+            style={{
+              color: "#d32f2f",
+              fontSize: "13px",
+              marginBottom: "16px",
+              padding: "8px 12px",
+              backgroundColor: "#ffebee",
+              borderRadius: "8px",
+              textAlign: "center",
+            }}
+          >
+            {error}
           </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+        )}
 
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: "12px 16px",
+            marginTop: "8px",
+            border: "none",
+            borderRadius: "10px",
+            fontSize: "15px",
+            fontWeight: "600",
+            color: "#ffffff",
+            backgroundColor: "#d4a574",
+            cursor: "pointer",
+            transition: "background-color 0.2s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "#c89560";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "#d4a574";
+          }}
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+  );
+}
